@@ -1,0 +1,14 @@
+{
+  "name": "express-socket",
+  "version": "1.0.0",
+  "main": "app.js",
+  "author": "Joao Tavares",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "dev": "nodemon app.js"
+  }
+}
