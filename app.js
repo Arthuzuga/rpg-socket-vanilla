@@ -45,6 +45,6 @@ app.get('/game', function (req, res) {
   res.sendFile(path.join(__dirname+'/views/gameRoom.html'))
 })
 
-server.listen(5000, () => {
+server.listen(80, () => {
   console.log(`IT'S ALIVE`);
 })
