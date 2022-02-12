@@ -45,6 +45,6 @@ app.get('/game', function (req, res) {
   res.sendFile(path.join(__dirname+'/views/gameRoom.html'))
 })
 
-server.listen(80, () => {
+server.listen(process.env.PORT || 5000, () => {
   console.log(`IT'S ALIVE`);
 })
