@@ -1,11 +1,40 @@
 <!DOCTYPE html>
   <head>
     <title>RPG - Stream Play</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="/socket.io/socket.io.js"></script>
   </head>
   <body>
-    <div>
+    <div class="container">
       <h1>Start to Play</h1>
-      <h2>how you doing?</h2>
+      <div class="dashboard">
+        <div class="dm-screen">
+          <span>DM</span>
+        </div>
+        <div class="gallery">
+          <div class="player">
+            <div class="player-container">
+              <img class="photo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvrgFiA297S1EgUWGwJLWqTg0-P-mMSGosrw&usqp=CAU" alt="player photo"/>
+              <div class="life" id="harry-life"></div>
+              <div class="mana" id="harry-mana"></div>
+            </div>
+            <span>Harry</span>
+          </div>
+        </div>
+      </div>
     </div>
+    <script>
+      const socket = io("http://localhost:5000");
+
+      const lifeDiv = document.getElementById('harry-life');
+      const manaDiv = document.getElementById('harry-mana');
+
+      socket.on('life', ({ currentHP, fullHP }) => {
+        lifeDiv.style.setProperty("--life-width",`${100*(currentHP/fullHP)}%`);
+      })
+      socket.on('mana', ({ currentMana, fullMana }) => {
+        manaDiv.style.setProperty("--mana-width",`${100*(currentMana/fullMana)}%`);
+      })
+    </script>
   </body>
 </html
