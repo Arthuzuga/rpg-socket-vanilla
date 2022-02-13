@@ -5,3 +5,21 @@
 - Formulário do jogador;
 - Sala de jogo (uso em streams);
 - Formulário do Dungeon Master/ Narrador.
+
+## Como rodar o projeto:
+- Instalar dependências do projeto
+```bash
+  yarn ou npm install
+``` 
+- Comando de desenvolvimento:
+```bash
+  yarn dev ou npm run dev
+```
+
+- Comnado de execução:
+```bash
+  yarn start ou npm start
+```
+
+### obs:
+- Projeto inicializado com yarn, mas fica a critério de quem for usar, escolher se continuará com o **yarn**, ou excluirá o _yarn.lock_ e usará os comandos do **npm**. 
