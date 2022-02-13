@@ -26,5 +26,5 @@
 
 ## Como acessar:
 ```bash
-**http://localhost:5000**
+http://localhost:5000
 ```
