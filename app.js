@@ -2,9 +2,11 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const http = require('http');
-const server = http.createServer(app);
+const server = http.createServer(app)
 const { Server } = require("socket.io")
 const io = new Server(server)
+
+const mockPlayers = require('./mockPlayers.js')
 
 require('dotenv').config()
 
@@ -47,11 +49,7 @@ app.get('/game', function (req, res) {
 app.get('/game-info', function (req, res) {
   return res.status(200).json({
     data: {
-      players: [
-        { name: 'joao', life: 100, mana: 100 },
-        { name: 'bruno', life: 100, mana: 100 },
-        { name: 'douglas', life: 100, mana: 100 },
-      ],
+      players: mockPlayers,
     }
   })
 })
