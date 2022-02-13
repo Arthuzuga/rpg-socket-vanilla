@@ -23,3 +23,8 @@
 
 ### obs:
 - Projeto inicializado com yarn, mas fica a critério de quem for usar, escolher se continuará com o **yarn**, ou excluirá o _yarn.lock_ e usará os comandos do **npm**. 
+
+## Como acessar:
+```bash
+**http://localhost:5000**
+```
