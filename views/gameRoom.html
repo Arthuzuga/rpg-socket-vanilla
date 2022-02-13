@@ -16,20 +16,21 @@
       </div>
     </div>
     <script>
-      let players = [
-        { name: 'harry', life: 100, mana: 100 },
-        { name: 'diego', life: 100, mana: 100 }
-      ]
+      fetch('http://localhost:5000/game-info')
+        .then((res) => res.json())
+        .then(res => {
+          let players = res.data.players
 
-      players = players.map((player) => {
-        return new Player(player)
-      })
-
-      players.forEach((player) => {
-        player.createHUD()
-        player.getLife()
-        player.getMana()
-      })
+          players = players.map((player) => {
+            return new Player(player)
+          })
+    
+          players.forEach((player) => {
+            player.createHUD()
+            player.getLife()
+            player.getMana()
+          })
+        })
     </script>
   </body>
 </html
