@@ -63,7 +63,45 @@
         .then((res) => res.json())
         .then(res => {
           let players = res.data.players
-          
+
+          let index = 0
+          setInterval(() => {
+              const myPlayers = res.data.players
+              const name = document.getElementById('classe')
+              name.textContent = myPlayers[index].classe
+
+              const playerName = document.getElementById('photo')
+              playerName.style.setProperty('--player-name', `'${myPlayers[index].name.toLocaleUpperCase()}'`)
+
+              const armorValue = document.getElementById('armor-value')
+              const lifeValue = document.getElementById('life-value')
+
+              armorValue.style.setProperty('--armor-value', `'${myPlayers[index].armor}'`)
+              lifeValue.style.setProperty('--life-value', `'${myPlayers[index].life}'`)
+
+              const level = document.getElementById('level')
+              level.textContent = `Level: ${myPlayers[index].level}`
+
+              const str = document.getElementById('str')
+              str.textContent = `STR ${myPlayers[index].attributes.str}`
+              const dex = document.getElementById('dex')
+              dex.textContent = `DEX ${myPlayers[index].attributes.dex}`
+              const con = document.getElementById('con')
+              con.textContent = `CON ${myPlayers[index].attributes.con}`
+              const intel = document.getElementById('int')
+              intel.textContent = `INT ${myPlayers[index].attributes.int}`
+              const wis = document.getElementById('wis')
+              wis.textContent = `WIS ${myPlayers[index].attributes.wis}`
+              const cha = document.getElementById('cha')
+              cha.textContent = `CHA ${myPlayers[index].attributes.cha}`
+
+              index += 1
+              if (index >= myPlayers.lenght -1){
+                index = 0
+              }
+          }, 5000)  
+
+
           players = players.map((player) => {
             return new Player(player)
           })
