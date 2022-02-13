@@ -81,44 +81,10 @@ class Player {
   }
 
   createCharacterForm() {
-    const gallery = document.getElementById('gallery')
-
-    const form = document.createElement('form')
-    form.id = 'form'
-    const lifeField = document.createElement('div')
-    lifeField.className = 'field'
-    const lifeLabel = document.createElement('label')
-    lifeLabel.htmlFor = 'life'
-    lifeLabel.textContent = 'HP'
-
-    const lifeInput = document.createElement('input')
-    lifeInput.name = 'life'
+    const lifeInput = document.querySelector('input[name=life]')
     lifeInput.id = `${this.name}-life`
 
-    const manaField = document.createElement('div')
-    manaField.className = 'field'
-    const manaLabel = document.createElement('label')
-    manaLabel.htmlFor = 'mana'
-    manaLabel.textContent = 'Spell Slots'
-
-    const manaInput = document.createElement('input')
-    manaInput.name = 'mana'
+    const manaInput = document.querySelector('input[name=mana]')
     manaInput.id = `${this.name}-mana`
-
-    const button = document.createElement('button')
-    button.type = 'submit'
-    button.textContent = 'Salvar'
-
-    manaField.appendChild(manaLabel)
-    manaField.appendChild(manaInput)
-
-    lifeField.appendChild(lifeLabel)
-    lifeField.appendChild(lifeInput)
-
-    form.appendChild(lifeField)
-    form.appendChild(manaField)
-    form.appendChild(button)
-
-    gallery.appendChild(form)
   }
 }
