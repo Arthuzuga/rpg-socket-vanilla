@@ -3,6 +3,7 @@
     <title>RPG - Stream Play</title>
     <link rel="stylesheet" href="./style.css">
     <script src="/socket.io/socket.io.js"></script>
+    <script src="js/player.js"></script>
   </head>
   <body>
     <div class="container">
@@ -11,29 +12,23 @@
         <div class="dm-screen">
           <span>DM</span>
         </div>
-        <div class="gallery">
-          <div class="player">
-            <div class="player-container">
-              <img class="photo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvrgFiA297S1EgUWGwJLWqTg0-P-mMSGosrw&usqp=CAU" alt="player photo"/>
-              <div class="life" id="harry-life"></div>
-              <div class="mana" id="harry-mana"></div>
-            </div>
-            <span>Harry</span>
-          </div>
-        </div>
+        <div id="gallery" class="gallery"></div>
       </div>
     </div>
     <script>
-      const socket = io("http://localhost:5000");
+      let players = [
+        { name: 'harry', life: 100, mana: 100 },
+        { name: 'diego', life: 100, mana: 100 }
+      ]
 
-      const lifeDiv = document.getElementById('harry-life');
-      const manaDiv = document.getElementById('harry-mana');
-
-      socket.on('life', ({ currentHP, fullHP }) => {
-        lifeDiv.style.setProperty("--life-width",`${100*(currentHP/fullHP)}%`);
+      players = players.map((player) => {
+        return new Player(player)
       })
-      socket.on('mana', ({ currentMana, fullMana }) => {
-        manaDiv.style.setProperty("--mana-width",`${100*(currentMana/fullMana)}%`);
+
+      players.forEach((player) => {
+        player.createHUD()
+        player.getLife()
+        player.getMana()
       })
     </script>
   </body>

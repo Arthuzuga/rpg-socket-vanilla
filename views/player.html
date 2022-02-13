@@ -3,6 +3,7 @@
     <title>RPG - Stream Play</title>
     <link rel="stylesheet" href="./style.css">
     <script src="/socket.io/socket.io.js"></script>
+    <script src="js/player.js"></script>
   </head>
   <body>
     <div class="container">
@@ -11,43 +12,20 @@
         <div class="dm-screen">
           <span>DM</span>
         </div>
-        <div class="gallery">
-          <form id="lifeform">
-            <Label for="life">HP</Label>
-            <input name="life" id="life"/>
-            <button type="submit">Salvar</button>
-          </form>
-          <form id="manaform">
-            <Label for="mana">Mana</Label>
-            <select name="mana" id="mana">
-              <option value="100">2</option>
-              <option value="50">1</option>
-              <option value="0">0</option>
-            </select>
-            <button type="submit">Salvar</button>
-          </form>
-        </div>
+        <div id="gallery" class="gallery"></div>
       </div>
     </div>
     <script>
-      const socket = io("http://localhost:5000");
-
-      const lifeform = document.getElementById('lifeform');
-      const life = document.getElementById('life');
-      const manaform = document.getElementById('manaform');
-      const mana = document.getElementById('mana');
-
-      lifeform.addEventListener('submit', function(e) {
+      const name = document.location.pathname.split('-')[1]
+      const player = new Player({ life: 100, mana: 100, name })
+      player.createCharacterForm()
+      
+      const form = document.getElementById('form');
+      
+      form.addEventListener('submit', function(e) {
         e.preventDefault();
-        if (life.value) {
-          socket.emit('life', life.value);
-        }
-      });
-      manaform.addEventListener('submit', function(e) {
-        e.preventDefault();
-        if (mana.value) {
-          socket.emit('mana', mana.value);
-        }
+        player.setLife()
+        player.setMana()
       });
     </script>
   </body>
