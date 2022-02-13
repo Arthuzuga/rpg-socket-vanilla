@@ -85,3 +85,10 @@ html, body {
   width: var(--mana-width);
   content: "";
 }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  margin-bottom: 1rem;
+}
