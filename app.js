@@ -10,18 +10,16 @@ app.set("view options", {layout: false});
 app.use(express.static(__dirname + '/views'));
 
 io.on('connection', (socket) => {
-  socket.on('life', (msg) => {
-    console.log(msg)
+  socket.on('life', ({ life, name }) => {
     io.emit('life', {
-      currentHP: msg,
-      fullHP: 100,
+      currentHP: life,
+      name,
     });
   });
-  socket.on('mana', (msg) => {
-    console.log(msg)
+  socket.on('mana', ({ mana, name }) => {
     io.emit('mana', {
-      currentMana: msg,
-      fullMana: 100,
+      currentMana: mana,
+      name,
     });
   });
   socket.on('disconnect', () => {
@@ -33,7 +31,7 @@ app.get('/', function (req, res) {
   res.sendFile('/views/index.html')
 })
 
-app.get('/player', function (req, res) {
+app.get('/player-:name', function (req, res) {
   res.sendFile(path.join(__dirname+'/views/player.html'))
 })
 
