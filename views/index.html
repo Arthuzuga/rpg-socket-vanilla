@@ -1,11 +1,37 @@
 <!DOCTYPE html>
   <head>
     <title>RPG - Stream Play</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/player.js"></script>
   </head>
   <body>
-    <div>
-      <h1>Welcome Players</h1>
-      <h2>how you doing?</h2>
+    <div class="container">
+      <h1>Bem-vindo a campanha</h1>
+      <div class="dashboard">
+        <div class="dm-screen">
+          <span>DM</span>
+        </div>
+        <div id="gallery" class="gallery"></div>
+      </div>
     </div>
+    <script>
+      fetch('http://localhost:5000/game-info')
+        .then((res) => res.json())
+        .then(res => {
+          let players = res.data.players
+
+          players.forEach(player => {
+            const gallery = document.getElementById('gallery')
+
+            const playerlink = document.createElement('a')
+            playerlink.href = `http://localhost:5000/player-${player.name}`
+            playerlink.target = '_blank'
+            playerlink.textContent = `Ficha de  ${player.name}`
+            
+            gallery.appendChild(playerlink)
+          });
+        })
+    </script>
   </body>
 </html
