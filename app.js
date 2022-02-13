@@ -42,6 +42,17 @@ app.get('/dm', function (req, res) {
 app.get('/game', function (req, res) {
   res.sendFile(path.join(__dirname+'/views/gameRoom.html'))
 })
+app.get('/game-info', function (req, res) {
+  return res.status(200).json({
+    data: {
+      players: [
+        { name: 'joao', life: 100, mana: 100 },
+        { name: 'bruno', life: 100, mana: 100 },
+        { name: 'douglas', life: 100, mana: 100 },
+      ],
+    }
+  })
+})
 
 server.listen(process.env.PORT || 5000, () => {
   console.log(`IT'S ALIVE`);
