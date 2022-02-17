@@ -1,6 +1,9 @@
 # RPG Socket Vanilla
 - Projeto para estudos do uso de HTML, CSS e JS vanilla em um http server a base de expressJS e socket.io para servir as páginas de uma partida de RPG em stream.
 
+![Captura de Tela 2022-02-16 às 22 23 06](https://user-images.githubusercontent.com/22326922/154388019-5c3b399f-32f9-4ba0-a978-cff8516a162c.png)
+
+
 ## Funcionalidades:
 - Formulário do jogador;
 - Sala de jogo (uso em streams);
