@@ -1,10 +1,11 @@
 const socket = io("http://localhost:5000");
 
 class Player {
-  constructor({life, mana, name}) {
+  constructor({ life, mana, name, image }) {
     this.life = life
     this.mana = mana
     this.name = name
+    this.image = image
   }
 
   setLife() {
@@ -56,7 +57,7 @@ class Player {
     playerContainer.className = 'player-container'
 
     const playerImage = document.createElement('img')
-    playerImage.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvrgFiA297S1EgUWGwJLWqTg0-P-mMSGosrw&usqp=CAU"
+    playerImage.src = this.image
     playerImage.alt =  `${this.name} photo`
     playerImage.className = 'photo'
 
