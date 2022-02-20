@@ -20,12 +20,24 @@ io.on('connection', (socket) => {
       name,
     });
   })
+
   socket.on('mana', ({ mana, name }) => {
     io.emit('mana', {
       currentMana: mana,
       name,
     });
   });
+
+  socket.on('secret-challenge-request', () => {
+    io.emit('secret-request')
+  })
+
+  socket.on('secret-challenge-response', ({ value }) => {
+    io.emit('secret-response', {
+      value,
+    })
+  })
+
   socket.on('disconnect', () => {
     console.log('user disconnected');
   })
