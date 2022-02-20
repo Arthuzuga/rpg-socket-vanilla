@@ -13,7 +13,7 @@ class Player {
     if (life.value) {
       socket.emit('life', {
         life: life.value,
-        name: this.name,
+        name: this.name.toLowerCase(),
       })
     }
   }
@@ -23,7 +23,7 @@ class Player {
     if (mana.value) {
       socket.emit('mana', {
         mana: mana.value,
-        name: this.name,
+        name: this.name.toLowerCase(),
       })
     }
   }
@@ -31,7 +31,7 @@ class Player {
   getLife() {
     const life = document.getElementById(`${this.name}-life`)
     socket.on('life', ({ currentHP, name }) => {
-      if (name === this.name) {
+      if (name.toLowerCase() === this.name) {
         life.style.setProperty("--life-width",`${100*(currentHP/this.life)}%`)
       }
     })
@@ -40,7 +40,7 @@ class Player {
   getMana() {
     const mana = document.getElementById(`${this.name}-mana`)
     socket.on('mana', ({ currentMana, name }) => {
-      if (name === this.name) {
+      if (name.toLowerCase() === this.name) {
         mana.style.setProperty("--mana-width",`${100*(currentMana/this.mana)}%`)
       }
     })
@@ -84,8 +84,9 @@ class Player {
   createCharacterForm() {
     const lifeInput = document.querySelector('input[name=life]')
     lifeInput.id = `${this.name}-life`
-
+    lifeInput.placeholder = this.life;
     const manaInput = document.querySelector('input[name=mana]')
     manaInput.id = `${this.name}-mana`
+    manaInput.placeholder = this.mana;
   }
 }
