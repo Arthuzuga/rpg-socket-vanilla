@@ -1,5 +1,3 @@
-const socket = io("http://localhost:5000");
-
 class Player {
   constructor({ life, mana, name, image }) {
     this.life = life
@@ -26,6 +24,14 @@ class Player {
         name: this.name.toLowerCase(),
       })
     }
+  }
+
+  getSecretChallenge() {
+    const footer = document.getElementById('secret-challenge')
+    socket.on('secret-request', () => {
+      footer.style.setProperty('--display-footer', 'block')
+      footer.style.setProperty('--animation-name', 'showMessage')
+    })
   }
 
   getLife() {
