@@ -29,19 +29,23 @@
           </form>
         </div>
       </div>
+      <footer id="secret-challenge" class="secret-challenge">
+        <button id="secretButton">Rolar o d20</button>
+      </footer>
     </div>
     <script>
       const name = document.location.pathname.split('-')[1]
+      const socket = io("http://localhost:5000");
       let player = {};
 
       fetch(`http://localhost:5000/player-info/${name}`)
       .then((res) => res.json())
       .then((res) => {
         const { data } = res;
-        const player = new Player({ ...data.player[0] })
+        player = new Player({ ...data.player[0] })
         player.createCharacterForm()
-      });
-
+        player.getSecretChallenge()
+      })
       
       const form = document.getElementById('form');
       
@@ -54,6 +58,13 @@
       const game = new Game() 
       const rollDiceBtn = document.getElementById('rollDice')
       rollDiceBtn.onclick = game.rollDice
+
+      const secretButton = document.getElementById('secretButton')
+      secretButton.addEventListener('click', () => {
+        const rollValue = game.rollSecretDice()
+        socket.emit('secret-challenge-response', { value: rollValue })
+      })
+
     </script>
   </body>
 </html

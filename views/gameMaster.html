@@ -1,11 +1,23 @@
 <!DOCTYPE html>
   <head>
     <title>RPG - Stream Play</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/dm.js"></script>
   </head>
   <body>
     <div>
-      <h1>Hello DM</h1>
-      <h2>how you doing?</h2>
+        <button type="button" id="secretChallenge">Teste Secreto</button>
+        <span id="secret-response"></span>
     </div>
+    <script>
+      const socket = io('http://localhost:5000')
+      const dmActions = new DM()
+      
+      const secretButton = document.getElementById('secretChallenge')
+      secretButton.onclick = dmActions.secretChallenge
+
+      dmActions.getSecretChallengeResponse()
+    </script>
   </body>
 </html

@@ -108,3 +108,38 @@ html, body {
   height: auto;
   margin-bottom: 1rem;
 }
+
+@keyframes showMessage {
+  0% {
+    bottom: -100px;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+
+@keyframes hideMessage {
+  0% {
+    bottom: 0;
+  }
+  100% {
+    bottom: -100px;
+  }
+}
+
+.secret-challenge {
+  --display-footer: none;
+  --animation-name: showMessage;
+  display: var(--display-footer);
+  position: fixed;
+  animation: var(--animation-name) 1s ease-in-out forwards;
+  -webkit-animation: var(--animation-name) 1s ease-in-out forwards;
+  padding: 2rem;
+  width: 100%;
+  background-color: red;
+}
+
+.secret-response {
+  --background-response: 'red';
+  background-color: var(--background-response)
+}
