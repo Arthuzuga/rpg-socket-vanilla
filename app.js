@@ -46,10 +46,19 @@ app.get('/dm', function (req, res) {
 app.get('/game', function (req, res) {
   res.sendFile(path.join(__dirname+'/views/gameRoom.html'))
 })
+
 app.get('/game-info', function (req, res) {
   return res.status(200).json({
     data: {
       players: mockPlayers,
+    }
+  })
+})
+
+app.get('/player-info/:name', function (req, res) {
+  return res.status(200).json({
+    data: {
+      player: mockPlayers.filter(({ name }) => name.toLowerCase() === req.params.name),
     }
   })
 })
