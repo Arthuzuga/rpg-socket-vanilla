@@ -3,6 +3,7 @@
     <title>RPG - Stream Play</title>
     <link rel="stylesheet" href="./style.css">
     <script src="/socket.io/socket.io.js"></script>
+    <script src="js/game.js"></script>
     <script src="js/player.js"></script>
   </head>
   <body>
@@ -10,7 +11,9 @@
       <h1>Start to Play</h1>
       <div class="dashboard">
         <div class="dm-screen">
-          <span>DM</span>
+          <div id="dice">
+            <button type="button" id="rollDice">Roll dice</button>
+          </div>
         </div>
         <div id="gallery" class="gallery">
           <form id="form">
@@ -29,8 +32,16 @@
     </div>
     <script>
       const name = document.location.pathname.split('-')[1]
-      const player = new Player({ life: 100, mana: 100, name })
-      player.createCharacterForm()
+      let player = {};
+
+      fetch(`http://localhost:5000/player-info/${name}`)
+      .then((res) => res.json())
+      .then((res) => {
+        const { data } = res;
+        const player = new Player({ ...data.player[0] })
+        player.createCharacterForm()
+      });
+
       
       const form = document.getElementById('form');
       
@@ -39,6 +50,10 @@
         player.setLife()
         player.setMana()
       });
+
+      const game = new Game() 
+      const rollDiceBtn = document.getElementById('rollDice')
+      rollDiceBtn.onclick = game.rollDice
     </script>
   </body>
 </html
